@@ -1,0 +1,7 @@
+*.pyc
+*.debug
+
+session.shelve*
+
+/dist
+/src/farfetch_api.egg-info
