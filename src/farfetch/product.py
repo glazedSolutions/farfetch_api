@@ -37,18 +37,14 @@ __copyright__ = "Copyright (c) 2008-2015 Hive Solutions Lda."
 __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
 
-import appier
+class ProductApi(object):
 
-from . import product
-
-BASE_URL = "https://publicapi.farfetch.com/v1/"
-""" The default base url to be used when no other
-base url value is provided to the constructor """
-
-class Api(
-    appier.Api,
-    product.ProductApi
-):
-
-    def __init__(self, *args, **kwargs):
-        appier.Api.__init__(self, *args, **kwargs)
+    def list_products(self, page = 0, page_size = 30, sort = "default"):
+        url = self.base_url + "products"
+        contents = self.get(
+            url,
+            page = page,
+            pageSize = page_size,
+            sortt = sort
+        )
+        return contents
