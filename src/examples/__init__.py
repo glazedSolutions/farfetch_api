@@ -35,6 +35,7 @@ __license__ = "GNU General Public License (GPL), Version 3"
 """ The license for the module """
 
 from . import app
+from . import base
 
-from .base import BASE_URL, Api
-from .product import ProductApi
+from .app import FarfetchApp
+from .base import get_api
