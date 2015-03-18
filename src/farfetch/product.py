@@ -39,12 +39,18 @@ __license__ = "GNU General Public License (GPL), Version 3"
 
 class ProductApi(object):
 
-    def list_products(self, page = 0, page_size = 30, sort = "default"):
+    def list_products(self, page = 0, page_size = 30, sort = "default", filter = ""):
         url = self.base_url + "products"
         contents = self.get(
             url,
             page = page,
             pageSize = page_size,
-            sortt = sort
+            sort = sort,
+            searchtext = filter 
         )
+        return contents
+
+    def show_product(self, id):
+        url = self.base_url + "products/%d" % id
+        contents = self.get(url)
         return contents
