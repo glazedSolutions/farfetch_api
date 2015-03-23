@@ -46,7 +46,7 @@ class ProductApi(object):
             page = page,
             pageSize = page_size,
             sort = sort,
-            searchtext = filter 
+            searchtext = filter
         )
         return contents
 
