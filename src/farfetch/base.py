@@ -74,13 +74,11 @@ class Api(
         if self.token: return self.token
         contents = self.post(
             self.auth_url,
-            data_j = dict(
-                grant_type = "client_credentials",
-                scope = "api",
-                client_id = self.client_id,
-                client_secret = self.client_secret
-            ),
-            auth = False
+            auth = False,
+            grant_type = "client_credentials",
+            scope = "api",
+            client_id = self.client_id,
+            client_secret = self.client_secret
         )
         token_type = contents["token_type"]
         access_token = contents["access_token"]
