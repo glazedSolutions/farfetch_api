@@ -60,15 +60,21 @@ class Api(
         self.auth_url = appier.conf("FF_AUTH_URL", AUTH_URL)
         self.client_id = appier.conf("FF_CLIENT_ID", None)
         self.client_secret = appier.conf("FF_CLIENT_SECRET", None)
+        self.country = appier.conf("FF_COUNTRY", "US")
+        self.currency = appier.conf("FF_CURRENCY", "USD")
         self.base_url = kwargs.get("base_url", self.base_url)
         self.auth_url = kwargs.get("auth_url", self.auth_url)
         self.client_id = kwargs.get("client_id", self.client_id)
         self.client_secret = kwargs.get("client_secret", self.client_secret)
+        self.country = kwargs.get("country", self.country)
+        self.currency = kwargs.get("currency", self.currency)
         self.token = kwargs.get("token", None)
 
     def build(self, method, url, headers, kwargs):
         auth = kwargs.get("auth", True)
-        if auth: headers["Authentication"] = self.get_token()
+        if auth: headers["Authorization"] = self.get_token()
+        headers["FF-Country"] = self.country
+        headers["FF-Currency"] = self.currency
 
     def get_token(self):
         if self.token: return self.token
